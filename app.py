@@ -1,11 +1,9 @@
 from database_manager import DatabaseManager
 from applications_database import applications_database_migration_plan
+import os
 
-dbname = os.environ['DBM_DBNAME']
-user = os.environ['DBM_USER']
-host=os.environ['DBM_HOST']
-password=os.environ['DBM_PASSWORD']
+DATABASE_URL = os.environ['DATABASE_URL']
 
-db = DatabaseManager(dbname, user, host, password)
+db = DatabaseManager(DATABASE_URL)
 
 db.migrate_database(applications_database_migration_plan)
