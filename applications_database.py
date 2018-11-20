@@ -9,7 +9,7 @@ applications_database_migration_plan.add_version(
 				reference VARCHAR(50) PRIMARY KEY,
 				title VARCHAR(5000),
 				link VARCHAR(200),
-				address VARCHAR(200),
+				address VARCHAR(500),
 				received_date DATE,
 				validated_date DATE,
 				status VARCHAR(50)
@@ -29,6 +29,12 @@ applications_database_migration_plan.add_version(
 			CREATE INDEX indexed_title
 			ON  application
 			USING gin(to_tsvector('english', title))
+		"""
+		,
+		"""
+			CREATE INDEX indexed_address
+			ON  application
+			USING gin(to_tsvector('english', address))
 		"""
 	],
 	downgrades = [
