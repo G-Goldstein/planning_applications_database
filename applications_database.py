@@ -28,7 +28,7 @@ applications_database_migration_plan.add_version(
 		"""
 			CREATE INDEX indexed_title
 			ON  application
-			USING gin(title)
+			USING gin(to_tsvector('english', title))
 		"""
 	],
 	downgrades = [
